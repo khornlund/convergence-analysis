@@ -16,7 +16,7 @@ Results
 
 The width of the confidence interval is computed as follows:
 
-$$w = f(p, N) = 2z \\: \\frac{\\sqrt{p(1-p)}}{\\sqrt{N}} \\quad , \\quad z = 1.96$$
+$w = f(p, N) = 2z \\: \\frac{\\sqrt{p(1-p)}}{\\sqrt{N}} \\quad , \\quad z = 1.96$
 
 ### General Trends
 
