@@ -1,5 +1,6 @@
 library(tidyverse)
 library(ggthemes)
+library(plotly)
 
 probs <- seq(0.50, 0.99, 0.01)
 N     <- seq(50, 1000, 1)
@@ -18,7 +19,7 @@ names(df) <- c("N", "P")
 df <- df %>%
   mutate(width = width_func(.$P, .$N))
 
-df %>%
+gg1 <- df %>%
   filter(N %in% runs) %>%
   ggplot(aes(x = P, y = width, color = factor(N))) +
   geom_line() +
@@ -31,13 +32,15 @@ df %>%
     color = "Trials (N)"
   )
 
+ggplotly(gg1)
+
 
 min.df <- df %>%
   filter(width <= 0.05) %>%
   group_by(P) %>%
   summarise(min_runs = min(N))
 
-min.df %>%
+gg2 <- min.df %>%
   ggplot(aes(x = P, y = min_runs)) +
   geom_line() +
   scale_color_gdocs() +
@@ -49,6 +52,6 @@ min.df %>%
     y = "E[ Trials ]"
   )
 
-
+ggplotly(gg2)
 
 
