@@ -1,16 +1,15 @@
-Convergence Statistics
-================
-Karl Hornlund
-August 29, 2018
-
 Introduction
 ------------
 
-The following is an analysis of confidence interval sizes for Bernoulli Trials. In particular:
+The following is an analysis of confidence interval sizes for Bernoulli
+Trials. In particular:
 
-*How does the width of a 95% confidence interval narrow as the number of trials increases?*
+*How does the width of a 95% confidence interval narrow as the number of
+trials increases?*
 
-The goal is to inform decisions choosing a number of trials *N*, such that *N* is not *unnecessarily large*, while large enough to give appropriate *confidence* in estimates resulting from the trials.
+The goal is to inform decisions choosing a number of trials *N*, such
+that *N* is not *unnecessarily large*, while large enough to give
+appropriate *confidence* in estimates resulting from the trials.
 
 Results
 -------
@@ -21,12 +20,17 @@ $$w = f(p, N) = 2z \\: \\frac{\\sqrt{p(1-p)}}{\\sqrt{N}} \\quad , \\quad z = 1.9
 
 ### General Trends
 
-The following shows the expected width of a 95% Confidence Interval, given the probability of success *p*, and the number of trials performed *N*.
+The following shows the expected width of a 95% Confidence Interval,
+given the probability of success *p*, and the number of trials performed
+*N*.
 
-![](convergence_files/figure-markdown_github/plot01-1.png)
+![](convergence_files/figure-markdown_strict/plot01-1.png)
 
 ### Intersection with *w* = 0.05
 
-The following shows the number of trials (*N*) required to narrow the Confidence Interval width to below 0.05, for a given probability *p*. In other words, it shows how the lines in the plot above intersect with *y* = 0.05.
+The following shows the number of trials (*N*) required to narrow the
+Confidence Interval width to below 0.05, for a given probability *p*. In
+other words, it shows how the lines in the plot above intersect with
+*y* = 0.05.
 
-![](convergence_files/figure-markdown_github/plot02-1.png)
+![](convergence_files/figure-markdown_strict/plot02-1.png)
