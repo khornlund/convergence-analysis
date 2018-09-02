@@ -1,8 +1,9 @@
 ---
 title: "Convergence Statistics"
 author: "Karl Hornlund"
-date: "August 29, 2018"
-output: github_document
+date: "September 2, 2018"
+output: 
+  html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -21,6 +22,7 @@ The goal is to inform decisions choosing a number of trials $N$, such that $N$ i
 ```{r funcs, echo = FALSE, message=FALSE}
 library(tidyverse)
 library(ggthemes)
+library(plotly)
 
 probs <- seq(0.50, 0.99, 0.01)
 N     <- seq(50, 1000, 1)
@@ -44,14 +46,14 @@ df <- df %>%
 
 The width of the confidence interval is computed as follows:
 
-$$w = f(p, N) = 2z \: \frac{\sqrt{p(1-p)}}{\sqrt{N}} \quad , \quad z = 1.96$$
+$w = f(p, N) = 2z \: \frac{\sqrt{p(1-p)}}{\sqrt{N}} \quad , \quad z = 1.96$
 
 ### General Trends 
 
 The following shows the expected width of a 95% Confidence Interval, given the probability of success $p$, and the number of trials performed $N$.
 
 ```{r plot01, echo=FALSE}
-df %>%
+gg1 <- df %>%
   filter(N %in% runs) %>%
   ggplot(aes(x = P, y = width, color = factor(N))) +
   geom_line() +
@@ -63,6 +65,8 @@ df %>%
     y = "E[ Width of 95% Confidence Interval ]",
     color = "Trials (N)"
   )
+
+ggplotly(gg1)
 ```
 
 ### Intersection with $w = 0.05$
@@ -75,7 +79,7 @@ min.df <- df %>%
   group_by(P) %>%
   summarise(min_runs = min(N))
 
-min.df %>%
+gg2 <- min.df %>%
   ggplot(aes(x = P, y = min_runs)) +
   geom_line() +
   scale_color_gdocs() +
@@ -86,4 +90,6 @@ min.df %>%
     x = "Probability of Bernoulli Trial Success (p)",
     y = "E[ Trials ]"
   )
+
+ggplotly(gg2)
 ```
